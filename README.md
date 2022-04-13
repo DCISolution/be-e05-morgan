@@ -39,9 +39,9 @@ Using the snippet **GET request middleware**, write some middleware that will re
 This middleware should return a `response` with the current time and date
 
 > Research:
-> 
+>
 > [Date Object [en]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
-> 
+>
 > [Date Object [de]](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
 # Task 5 - Add a GET request to '/random'
@@ -79,7 +79,7 @@ If it can not be converted to a number, then send a `response` with the message:
 > [Number() [english]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 >
 > [Number() [deutsch]](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Number)
-> 
+>
 > [isNaN() [english]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN)
-> 
+>
 > [isNaN() [deutsch]](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/isNaN)
