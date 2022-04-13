@@ -1,85 +1,53 @@
-# An almost simple server in Express.js
+# Using morgan
 
-This project will allow you to practise writing middleware for requests in Express.js
+morgan logs requests made by a client to the server. By default requests are logged to process.stdout, otherwise known as the console.
 
-## What you will be doing
+The simplest usage is given in `simple.js`:
 
-This project will allow you to practise using:
+```javascript
+const app = require('express')();
+const morgan = require('morgan')
+const app = express()
+app.use(morgan('dev'))
 
-> Express.js
+app.get('/', (request, response) => {
+  response.send("Hello world!")
+})
 
-This project assumes you've already had experience with:
+app.listen(3002, () => {
+  console.log(`Listening on port 3002`)
+});
 
-> JavaScript APIs (Math, Date)
+// Listening on port 3002
+// GET / 200 3.562 ms - 12
+// GET / 304 1.283 ms - -
+```
 
-## Tasks
+The 'dev' token will display the following details in the Terminal pane:
 
-## Task 1 - Getting ready
+`:method :url :status :response-time ms - :res[content-length]`
 
-1. Initialise npm into your project
-   `npm init -y`
-2. Install the express.js npm package
-   `npm i express`
-3. Create a file for your server (`server.js`)
+For example, a call to [http://localhost:3001/random]() might return "42" (2 characters), in which case morgan would log:
 
-# Task 2 - Setting up your server
+`GET /random 200 1.403 ms - 2`
 
-Use the snippet **starter code** to initialise your `server.js` file
+## Custom usage
 
-# Task 3 - Add a GET request to '/hello'
+This project demonstrates how to:
+* Create a custom `etags` token
+* How to create a custom function for morgan
+* How to stream the log to an access.log file rather than to the Terminal. (See `log/access.log` for sample output.)
 
-Using the snippet **GET request middleware**, write some middleware that will respond to the path `/hello`
+## Entity Tags
 
-This middleware should return a `response` with a message of greetings.
+This project also shows how Entity Tags (etags) are used and why the status of a response may be 304 (Not Modified), rather than 200, when the same content is sent a second and subsequent times.
 
-# Task 4 - Add a GET request to '/time'
+Read more about how `etag`s are used to tell the browser to use content that it has already cached, to save bandwidth: [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag) | [Wikipedia](https://en.wikipedia.org/wiki/HTTP_ETag).
 
-Using the snippet **GET request middleware**, write some middleware that will respond to the path `/time`
+## /favicon.ico 404 
 
-This middleware should return a `response` with the current time and date
+A browser will typically request a favicon.ico to display in the page's tab. If a 404 (Not Found) status is returned, the browser will not request it again. Sometimes it is preferable to send a 204 (No Content) status. Code for this is also given, but commented out, as the browser will continue to ask for the favicon, and this pollutes the access.log.
 
-> Research:
->
-> [Date Object [en]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
->
-> [Date Object [de]](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Date)
+---
 
-# Task 5 - Add a GET request to '/random'
-
-Using the snippet **GET request middleware**, write some middleware that will respond to the path `/random`
-
-This middleware should return a `response` with the random number
-
-> Research:
->
-> [Math.random() [en]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
->
-> [Math.random() [de]](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
-
-# Task 6 - Add a GET request to '/isNumber'
-
-Using the snippet **GET request middleware with parameters**, write some middleware that will respond to the path `/isNumber`
-
-> Hint: Parameters can be added to a path with a `:` symbol, for example, to add the parameter `name` we would write `/:name/`
-
-This middleware should receive one parameter `value`
-
-This middleware should check that the parameter `value` can be converted to a number
-
-If it can be converted to a number, then send a `response` with the message:
-> "This is a number"
-
-If it can not be converted to a number, then send a `response` with the message:
-> "This is not a number"
-
-> Hint: You can use both the Math function `Number()` and the `isNaN()` function to see if the value can be converted to a number or not
-
-> Research:
->
-> [Number() [english]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
->
-> [Number() [deutsch]](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Number)
->
-> [isNaN() [english]](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN)
->
-> [isNaN() [deutsch]](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/isNaN)
+Full details on using morgan [here](https://www.npmjs.com/package/morgan).

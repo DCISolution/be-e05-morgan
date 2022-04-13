@@ -1,24 +1,25 @@
 {
-  "name": "almost-simple-server",
+  "name": "morgan",
   "version": "1.0.0",
-  "description": "This project will allow you to practise writing middleware for requests in Express.js",
+  "description": "Demonstration of using and customizing the  morgan node_module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DCISolution/be-05-almost-simple-server.git"
+    "url": "git+https://github.com/DCISolution/be-e05-morgan.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DCISolution/be-05-almost-simple-server/issues"
+    "url": "https://github.com/DCISolution/be-e05-morgan.git/issues"
   },
-  "homepage": "https://github.com/DCISolution/be-05-almost-simple-server#readme",
+  "homepage": "https://github.com/DCISolution/be-e05-morgan.git#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "nodemon": "^2.0.15"
+    "morgan": "^1.10.0"
   }
 }
